@@ -1,9 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Room from './Component/Room';
-import RoomJoin from './Component/RoomJoin';
-import Chat from './Component/Chat';
-import ScreenSharing from './Component/ScreenSharing';
+import RoomJoin from './Components/RoomJoin';
+import Room from './Components/Room';
+
 
 function App() {
   return (

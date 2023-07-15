@@ -80,17 +80,7 @@
     width: fit-content;
   }
   
-  .chat-icon-div::after{
-    content:"";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background-color:red;
-    border: 0.1rem solid whitesmoke;
-  }
+
   .chat-icon{
    margin-top: 0.5rem;
    margin-right: 0.5rem;
