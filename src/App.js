@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Room from './Component/Room';
+import RoomJoin from './Component/RoomJoin';
+import Chat from './Component/Chat';
+import ScreenSharing from './Component/ScreenSharing';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Routes>
+      <Route path="/" element={<RoomJoin />} />
+      <Route path="/room/:roomId" element={<Room />} />
+    </Routes>
+    </>
   );
 }
 
