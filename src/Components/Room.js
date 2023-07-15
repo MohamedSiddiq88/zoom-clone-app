@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import Chat from './Chat';
 
 
-const socket = io('http://localhost:3001/');
+const socket = io('https://zoom-express.onrender.com/');
 
 function Room() {
   const { roomId } = useParams();
