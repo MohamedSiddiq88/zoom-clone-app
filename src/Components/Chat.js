@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css'
-function Chat({ socket, roomId, peerId }) {
+function Chat({ socket, roomId, peerId, setIsMessageArrive }) {
   const [chatMessage, setChatMessage] = useState('');
   const [chatMessages, setChatMessages] = useState([]);
 
@@ -19,6 +19,9 @@ function Chat({ socket, roomId, peerId }) {
     socket.on('chat-message', (userId, message) => {
       const updatedChatMessages = [...chatMessages, { userId, message }];
       setChatMessages(updatedChatMessages);
+      if (userId !== peerId) {
+        setIsMessageArrive(true);
+      }
     });
 
     return () => {
