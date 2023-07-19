@@ -17,8 +17,14 @@ function Room() {
   const [isAudioMuted, setIsAudioMuted] = useState(false);
   const [isVideoPaused, setIsVideoPaused] = useState(false);
   const [isChatHide, setIsChatHide] = useState(true);
+  const [isMessageArrive, setIsMessageArrive] = useState(false)
+
 
   const peerInstance = useRef(null);
+
+  const handleNewMessage = (value) => {
+    setIsMessageArrive(value);
+  }
 
   useEffect(() => {
     const initializePeer = async () => {
@@ -241,7 +247,7 @@ function Room() {
 
         </div>
         <div className='col-lg-4' style={{ display: isChatHide ? 'none' : 'flex' }}>
-          <Chat socket={socket} roomId={roomId} peerId={peerId} />
+          <Chat socket={socket} roomId={roomId} peerId={peerId} setIsMessageArrive={handleNewMessage} />
         </div>
 
       </div>
@@ -262,8 +268,33 @@ function Room() {
         </div>
         <div className='d-flex'>
           <i class="fa-solid fa-user-group icon">{connectedUsers.length}</i>
-          <div className='chat-icon-div' notification='new'>
-            <i class="fa-solid fa-message  chat-icon" onClick={() => setIsChatHide(!isChatHide)}></i>
+          <div
+            style={{
+              position: 'relative',
+              width: 'fit-content',
+            }}
+            className="chat-icon-div"
+          >
+            {
+              isMessageArrive && isChatHide ?
+                <span
+                  style={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '1rem',
+                    height: '1rem',
+                    borderRadius: '50%',
+                    backgroundColor: 'red',
+                    border: '0.1rem solid whitesmoke',
+                  }}
+                ></span>
+                :
+                null
+            }
+
+            <i class="fa-solid fa-message  chat-icon" onClick={() => { setIsChatHide(!isChatHide); setIsMessageArrive(false) }}></i>
           </div>
         </div>
         {screenSharingUser === peerId ? (
